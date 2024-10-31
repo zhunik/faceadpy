@@ -1,0 +1,16 @@
+{
+  "accounts": [
+    {
+      "username": "логін1",
+      "password": "пароль1",
+      "post": {
+        "text": "Посто файний котик щоб протестувати чи це можливо)",
+        "imagePath": "image1.jpg"
+      },
+      "groups": [
+        "https://www.facebook.com/groups/3836169146655927",
+        "https://www.facebook.com/groups/3403373486631994"
+      ]
+    }
+  ]
+}
