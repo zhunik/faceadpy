@@ -12,6 +12,7 @@ import os
 with open("config.json", "r", encoding="utf-8") as f:
     config = json.load(f)
 
+
 def post_to_facebook(account):
     # Set up Chrome driver
     options = webdriver.ChromeOptions()
@@ -35,9 +36,6 @@ def post_to_facebook(account):
         sleep(10)
 
         # # Navigate to the group or profile page
-        # driver.get("https://www.facebook.com/groups/назва_групи/")  # Replace with desired URL
-        # sleep(5)
-
         for group_url in account["groups"]:
             driver.get(group_url)
             sleep(5)
@@ -58,7 +56,6 @@ def post_to_facebook(account):
             image_button.click()
             sleep(2)
             upload_image = driver.find_element(By.XPATH, "//input[@multiple='']")
-        
             image_path = os.path.abspath(account["post"]["imagePath"]) 
 
             upload_image.send_keys(image_path)
@@ -69,8 +66,17 @@ def post_to_facebook(account):
             publish_button.click()
             sleep(5)
 
+        profile_button = driver.find_element(By.CSS_SELECTOR, "[aria-label='Ваш профіль']")
+        profile_button.click()
+        sleep(2)
+
+        exit_button = driver.find_element(By.XPATH, "//*[contains(text(), 'Вийти')]")
+        exit_button.click()
+        sleep(4)
+
     finally:
         driver.quit()
+
 
 # Iterate through accounts in the config file and post for each one
 for account in config["accounts"]:
